@@ -26,7 +26,8 @@ SECRET_KEY = os.environ['DJANGO_SECRET']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = list(os.environ['LOCAL_IP'])
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = list(os.environ['LOCAL_IP'])
 
 
 # Application definition
