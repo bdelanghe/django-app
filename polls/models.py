@@ -8,6 +8,7 @@ from django.utils import timezone
 # Create your models here.
 
 _MAX_LENGTH: Final = 200
+_STARTING_VOTES: Final = 0
 
 @final
 class Question(models.Model):
@@ -25,7 +26,7 @@ class Question(models.Model):
 class Choice(models.Model):
     question: Field[str, str] = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text: Field[str, str] = models.CharField(max_length=_MAX_LENGTH)
-    votes: Field[int, int] = models.IntegerField(default=0)
+    votes: Field[int, int] = models.IntegerField(default=_STARTING_VOTES)
 
     def __str__(self) -> str:
         return self.choice_text
