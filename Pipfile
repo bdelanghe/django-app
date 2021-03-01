@@ -4,10 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+django-stubs = "*"
 
 [dev-packages]
 django = "*"
 mypy = "*"
+django-stubs = "*"
 
 [requires]
 python_version = "3.9"
