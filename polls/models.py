@@ -1,13 +1,18 @@
 from datetime import datetime
+from typing import Final, final
+from django.db.models import Field
 
 from django.db import models
 from django.utils import timezone
 
 # Create your models here.
 
+_MAX_LENGTH: Final = 200
+
+@final
 class Question(models.Model):
-    question_text: str = models.CharField(max_length=200)
-    pub_date: datetime = models.DateTimeField('date published')
+    question_text: Field[str, str] = models.CharField(max_length=_MAX_LENGTH)
+    pub_date: Field[datetime, datetime] = models.DateTimeField('date published')
 
     def __str__(self) -> str:
         return self.question_text
@@ -16,10 +21,11 @@ class Question(models.Model):
         recent: bool = (self.pub_date >= timezone.now())
         return recent
 
+@final
 class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text: str = models.CharField(max_length=200)
-    votes: int = models.IntegerField(default=0)
+    question: Field[str, str] = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text: Field[str, str] = models.CharField(max_length=_MAX_LENGTH)
+    votes: Field[int, int] = models.IntegerField(default=0)
 
     def __str__(self) -> str:
         return self.choice_text

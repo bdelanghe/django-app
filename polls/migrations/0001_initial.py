@@ -3,13 +3,13 @@
 from django.db import migrations, models
 import django.db.models.deletion
 
-from typing import List
+from typing import List, Tuple
 
 class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies: list[str] = [
+    dependencies: List[Tuple[str, str]] = [
     ]
 
     operations = [
