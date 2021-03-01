@@ -1,6 +1,4 @@
-from datetime import datetime
 from typing import Final, final
-from django.db.models import Field
 
 from django.db import models
 from django.utils import timezone
@@ -12,8 +10,8 @@ _STARTING_VOTES: Final = 0
 
 @final
 class Question(models.Model):
-    question_text: Field[str, str] = models.CharField(max_length=_MAX_LENGTH)
-    pub_date: Field[datetime, datetime] = models.DateTimeField('date published')
+    question_text = models.CharField(max_length=_MAX_LENGTH)
+    pub_date = models.DateTimeField('date published')
 
     def __str__(self) -> str:
         return self.question_text
@@ -24,9 +22,9 @@ class Question(models.Model):
 
 @final
 class Choice(models.Model):
-    question: Field[str, str] = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text: Field[str, str] = models.CharField(max_length=_MAX_LENGTH)
-    votes: Field[int, int] = models.IntegerField(default=_STARTING_VOTES)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=_MAX_LENGTH)
+    votes = models.IntegerField(default=_STARTING_VOTES)
 
     def __str__(self) -> str:
         return self.choice_text
