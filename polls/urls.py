@@ -3,6 +3,7 @@ from typing import List
 
 from . import views
 
+app_name = 'polls'
 urlpatterns = [
     # ex: /polls/
     path("", views.index, name="index"),
