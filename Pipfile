@@ -11,6 +11,7 @@ django = "*"
 mypy = "*"
 django-stubs = "*"
 pylint = "*"
+debugpy = "*"
 
 [requires]
 python_version = "3.9"

@@ -1,3 +1,4 @@
+import datetime
 from typing import Final, final
 
 from django.db import models
@@ -7,6 +8,7 @@ from django.utils import timezone
 
 _MAX_LENGTH: Final = 200
 _STARTING_VOTES: Final = 0
+_DAYS_OLD_RECENT: Final = 1
 
 
 @final
@@ -18,8 +20,8 @@ class Question(models.Model):
         return self.question_text
 
     def was_published_recently(self) -> bool:
-        recent: bool = self.pub_date >= timezone.now()
-        return recent
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=_DAYS_OLD_RECENT)
+
 
 
 @final
